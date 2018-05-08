@@ -1,24 +1,30 @@
-import TouchRobot
+#import TouchRobot
 import KoTTiming
 import operator
 import time
-import SNESController
+#import SNESController
 import ReplayController
 
-gamepad = SNESController.SNESController()
-myRobot = TouchRobot.TouchRobot(60,-30,.1,.05)
-timings = KoTTiming.KoTTiming(myRobot.touchDownTime,myRobot.touchUpTime)
+#gamepad = SNESController.SNESController()
+#myRobot = TouchRobot.TouchRobot(60,-30,.1,.05)
+myRobot = None
+#timings = KoTTiming.KoTTiming(myRobot.touchDownTime,myRobot.touchUpTime)
+timings = None
 replay = ReplayController.ReplayController()
 
 def aBtn():
-    myRobot.touch()
+    #myRobot.touch()
     replay.add("A")
     replay.printFileEnd(10)
 
 def mainLoop():
     replay.loadFile("replay")
-    gamepad.setCallbackFor("A",aBtn)
-    gamepad.listen()
+    #gamepad.setCallbackFor("A",aBtn)
+    #replay.deleteLine(0)
+    aBtn()
+    #replay.changeLine(4,"Johann")
+    replay.printFileEdit()
+    #gamepad.listen()
 
     while True:
 	command = raw_input("Command: ")
